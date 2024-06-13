@@ -4,12 +4,17 @@
     <h3>{{ post.title }}</h3>
     <p class="pre">{{ post.body }}</p>
   </div>
+  <div v-else>
+    <Spinner></Spinner>
+  </div>
 </template>
 
 <script>
 import getPost from '@/composables/getPost';
+import Spinner from '@/components/Spinner.vue';
 
 export default {
+  components: { Spinner },
   name: 'DetailsView',
 
   props: ['id'],
