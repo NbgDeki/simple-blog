@@ -11,33 +11,14 @@
 
 <script>
 import PostList from '@/components/PostList.vue';
-import { ref } from 'vue';
+import getPosts from '../composables/getPosts';
 
 export default {
-  components: { PostList },
   name: 'HomeView',
+  components: { PostList },
 
   setup() {
-    const posts = ref([]);
-    const error = ref(null);
-
-    const load = async () => {
-      try {
-        const res = await fetch('http://localhost:3000/posts');
-
-        console.log(res);
-
-        if (!res.ok) {
-          throw Error('No data available');
-        }
-
-        const data = await res.json();
-        posts.value = data;
-      } catch (err) {
-        error.value = err.message;
-        console.log(error.value);
-      }
-    };
+    const { posts, error, load } = getPosts();
 
     load();
 
