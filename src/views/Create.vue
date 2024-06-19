@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { projectFirestore, timestamp } from '@/firebase/config';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -41,17 +42,12 @@ export default {
       const post = {
         title: title.value,
         body: body.value,
-        tags: tags.value
+        tags: tags.value,
+        createdAt: timestamp()
       };
 
       try {
-        await fetch('http://localhost:3000/posts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(post)
-        });
+        const res = await projectFirestore.collection('posts').add(post);
 
         router.push({ name: 'home' });
       } catch (error) {

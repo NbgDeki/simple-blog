@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import DetailsView from '../views/DetailsView.vue';
 import Create from '../views/Create.vue';
 import TagView from '../views/TagView.vue';
+import RealTime from '../views/RealTimeView.vue';
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     path: '/tags/:tag',
     name: 'tag',
     component: TagView
+  },
+
+  {
+    path: '/realtime',
+    name: 'realTime',
+    component: RealTime
   }
 ];
 
